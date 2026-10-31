@@ -9,3 +9,5 @@ One-dimensional phase lines place fixed points and initial states on the x-axis,
 The navigation omits exponential growth and decay, mass-action kinetics, and the phosphorylation–dephosphorylation cycle. Saddle-node, transcritical and both pitchfork forms are grouped under **Types of bifurcation**. First-introduction page references point to the original weekly PDF pages.
 
 The simulations are qualitative teaching illustrations with representative parameter values, not calibrated predictions for a specific biological system. Spatial PDEs use an explicit finite-difference method with no-flux boundaries.
+
+The lecture-only diffusive predator–prey model uses a travelling-wave reduction and an interactive 3D phase portrait. Drag the plot to rotate it and use the mouse wheel to zoom.
