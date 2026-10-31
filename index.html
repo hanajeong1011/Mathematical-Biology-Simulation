@@ -60,4 +60,68 @@ function drawField(g,m,p,xr,yr,X,Y,pad,w,h){for(let i=0;i<17;i++)for(let j=0;j<1
 function draw1d(g,m,p,X,Y,w,h,pad){let xr=m.range[0],y=0;g.strokeStyle='#aeb9a7';g.beginPath();g.moveTo(pad.l,Y(y));g.lineTo(w-pad.r,Y(y));g.stroke();let pts=120,roots=[];let f=x=>m.f([x],p)[0];let lastX=xr[0],last=f(lastX);for(let i=1;i<=pts;i++){let x=xr[0]+(xr[1]-xr[0])*i/pts,v=f(x);if(v*last<0){let r=x-(x-lastX)*v/(v-last);roots.push(r);let eps=(xr[1]-xr[0])*0.001,slope=(f(r+eps)-f(r-eps))/(2*eps);g.fillStyle=Math.abs(slope)<.015?'#d4a14d':slope<0?'#527d3d':'#d67863';g.beginPath();g.arc(X(r),Y(0),5,0,7);g.fill()}lastX=x;last=v}g.strokeStyle='#83b55f';g.lineWidth=2.5;for(let i=0;i<10;i++){let x=xr[0]+(xr[1]-xr[0])*(i+.5)/10,v=f(x),y0=Y(0),len=13*Math.sign(v);g.beginPath();g.moveTo(X(x)-len,y0);g.lineTo(X(x)+len,y0);g.stroke();arrow(g,X(x),y0,X(x)+len,y0)}let path=trajectory(m,p,init()),pt=path[Math.min(Math.floor(clock*8),path.length-1)]||init();g.fillStyle='#395d2c';g.beginPath();g.arc(X(pt[0]),Y(0),6,0,7);g.fill();g.fillStyle='#586651';g.font='11px system-ui';g.fillText(m.state[0],w/2,h-4);g.fillText('Fixed points · stable / unstable / non-hyperbolic',pad.l+5,pad.t+12)}
 function drawSpatial(g,w,h){let pad=34,nx=120,dx=1,dt=.01,steps=Math.floor(clock*10),D=+(document.querySelector('[data-param="D"]')?.value||.25),r=+(document.querySelector('[data-param="r"]')?.value||1),isRabies=selected.id==='rabies',isSis=selected.id==='sis-spatial';let u=Array.from({length:nx},(_,i)=>i<13?(isRabies?1:.9):1),v=Array.from({length:nx},(_,i)=>i>=8&&i<14?.12:.005);for(let k=0;k<steps;k++){let un=u.slice(),vn=v.slice();for(let i=0;i<nx;i++){let left=Math.max(0,i-1),right=Math.min(nx-1,i+1),lapv=(v[left]-2*v[i]+v[right])/(dx*dx),laph=(u[left]-2*u[i]+u[right])/(dx*dx);if(isRabies){un[i]=Math.max(0,u[i]-dt*u[i]*v[i]);vn[i]=Math.max(0,v[i]+dt*(u[i]*v[i]-(+(document.querySelector('[data-param="alpha"]')?.value||.2))*v[i]+D*lapv))}else if(isSis){un[i]=Math.max(0,Math.min(1,1-v[i]));vn[i]=Math.max(0,Math.min(1,v[i]+dt*(r*v[i]*(1-v[i])-(+(document.querySelector('[data-param="a"]')?.value||.3))*v[i]+D*lapv)))}else{un[i]=Math.max(0,Math.min(1,u[i]+dt*(r*u[i]*(1-u[i])+D*laph)));vn[i]=v[i]}}u=un;v=vn}g.strokeStyle='#e5ece0';for(let j=0;j<=4;j++){let yy=pad+(h-2*pad)*j/4;g.beginPath();g.moveTo(pad,yy);g.lineTo(w-10,yy);g.stroke()}const line=(arr,color)=>{g.strokeStyle=color;g.lineWidth=2.7;g.beginPath();arr.forEach((z,i)=>{let x=pad+(w-pad-14)*i/(arr.length-1),y=h-pad-z*(h-2*pad);i?g.lineTo(x,y):g.moveTo(x,y)});g.stroke()};if(isRabies){line(u,'#a9c88c');line(v,'#78ac55');g.fillStyle='#78966a';g.font='10px system-ui';g.fillText('Susceptible',pad+4,pad+12);g.fillStyle='#4e7e39';g.fillText('Infected',pad+82,pad+12)}else line(isSis?v:u,'#78ac55');g.fillStyle='#75816f';g.font='11px system-ui';g.fillText('Space',w/2,h-7);g.save();g.translate(12,h/2);g.rotate(-Math.PI/2);g.fillText(isRabies?'Population density':isSis?'Infected fraction':'Population / gene density',0,0);g.restore()}
 function toggle(){running=!running;document.querySelector('#run').textContent=running?'Ⅱ Pause':(selected.spatial?'▶ Play waves':'▶ Run');if(running)tick()}function tick(){if(!running)return;clock+=.16;draw();anim=requestAnimationFrame(tick)}buildNav();render();window.addEventListener('resize',draw);
+</script><style>.plot{height:420px}.hero{padding:22px 30px}h1{font-size:34px}.model-desc{font-size:16px}.equation{font-size:16px;line-height:2}.control-row label{font-size:13px}.number-input{width:90px!important;padding:5px;border:1px solid #ccd9c3;border-radius:8px}.eq-list{display:flex;gap:8px;flex-wrap:wrap;font-size:12px}.eq-list span{background:#edf4e7;padding:6px 9px;border-radius:8px}.eq-list b{display:block}.model-card span{font-size:13px}.model-link{font-size:14px}:focus-visible{outline:3px solid #86ae6b;outline-offset:2px}@media(max-width:580px){.plot{height:330px}.equation{font-size:13px}.sidebar{max-height:250px}.hero h1{font-size:28px}}</style><script>// Numerical and interaction improvements. No external dependencies.
+const byId=id=>models.find(m=>m.id===id);
+byId('fhn').eq='dv/dt = v(a − v)(v − 1) − w + I₀\ndw/dt = ε(bv − γw)';
+byId('fhn').f=(s,p)=>[s[0]*(p.a-s[0])*(s[0]-1)-s[1]+p.I0,p.epsilon*(p.b*s[0]-p.gamma*s[1])];
+byId('hh').type='4D ODE · V–m projection';
+byId('hh').params.current[0]=10;
+byId('hopfield').eq='dx₁/dt = −x₁ + c tanh(βx₂)\ndx₂/dt = −x₂ + c tanh(βx₁)\nTwo units; symmetric cross-weights; no self-connections.';
+byId('hopfield').f=(s,p)=>[-s[0]+p.coupling*Math.tanh(p.beta*s[1]),-s[1]+p.coupling*Math.tanh(p.beta*s[0])];
+byId('sis2').eq+='\nThis view uses equal recovery time scales.';
+byId('wc').eq='du₁/dt = −u₁ + F(2u₁ − cross·u₂ + bias)\ndu₂/dt = −u₂ + F(2u₂ − cross·u₁ + bias)\nF(z) = 1/(1 + exp(−gain·z)); τ₁ = τ₂ = 1';
+byId('competition').eq='dN₁/dt = N₁(1 − N₁/10 − b₁₂N₂/10)\ndN₂/dt = 0.9N₂(1 − N₂/10 − b₂₁N₁/10)';
+byId('feedback').eq='dx/dt = 2/(1 + y²) − decay·x\ndy/dt = feedback·x/(1 + x) − decay·y\nRepresentative feedback functions; no explicit delay term.';
+byId('repressilator').eq='dxᵢ/dt = 0.2 + prod/(1 + x_previous^hill) − decay·xᵢ\nCyclic order: x₃ → x₁ → x₂ → x₃; symmetric parameters.';
+byId('predreal').eq+='\nThis view fixes K = 12.';
+let cache=null,lastFrame=0,spatialCache=null;
+function trajectory(m,p,y){
+ const key=JSON.stringify([m.id,p,y]);if(cache?.key===key)return cache.path;
+ let path=[y.slice()],t=0,h=m.id==='hh'?.005:.025,T=m.id==='fhn'?300:40,status='';const times=[0];
+ for(let step=0;step<80000&&t<T;step++){
+  h=Math.min(h,T-t);let a=rk4(m.f,y,h,p),half=rk4(m.f,y,h/2,p),b=rk4(m.f,half,h/2,p);
+  let err=Math.max(...a.map((v,j)=>Math.abs(v-b[j])/(1e-7+1e-5*Math.max(Math.abs(y[j]),Math.abs(b[j])))))/15;
+  if(!Number.isFinite(err)){h/=2;if(h<1e-8){status='Integration stopped: singular or divergent solution.';break}continue}
+  if(err>1){h*=Math.max(.2,.85*Math.pow(err,-.2));continue}
+  y=b;t+=h;path.push(y.slice());times.push(t);
+  if(m.id==='harvest'&&y[0]<=0){path[path.length-1]=[0];status='Population reached extinction; harvesting stops here.';break}
+  if(y.some(v=>Math.abs(v)>1e5)){status='Unbounded trajectory; integration stopped.';break}
+  h=Math.min(m.id==='hh'?.025:.15,h*Math.min(2,err>0?.9*Math.pow(err,-.2):2));
+ }
+ cache={key,path,times,status};return path;
+}
+function roots(m,p){
+ let n=m.state.length;if(n>2)return [];
+ const f=s=>m.f(s,p),found=[],r=m.range;
+ const add=s=>{if(s.every((v,i)=>Number.isFinite(v)&&v>=r[i][0]-1e-6&&v<=r[i][1]+1e-6)&&Math.hypot(...f(s))<1e-6&&!found.some(z=>Math.hypot(...z.map((v,i)=>v-s[i]))<1e-4))found.push(s)};
+ for(let i=0;i<=24;i++)for(let j=0;j<(n===1?1:25);j++){
+  let s=[r[0][0]+i/24*(r[0][1]-r[0][0])];if(n===2)s.push(r[1][0]+j/24*(r[1][1]-r[1][0]));
+  for(let k=0;k<40;k++){let v=f(s);if(Math.hypot(...v)<1e-9)break;let J=jac(m,p,s),d;
+   if(n===1){if(Math.abs(J[0][0])<1e-12)break;d=[v[0]/J[0][0]]}else{let det=J[0][0]*J[1][1]-J[0][1]*J[1][0];if(Math.abs(det)<1e-12)break;d=[(v[0]*J[1][1]-v[1]*J[0][1])/det,(J[0][0]*v[1]-J[1][0]*v[0])/det]}
+   s=s.map((v,k)=>v-d[k]);if(s.some(v=>!Number.isFinite(v)||Math.abs(v)>1e6))break;
+  }add(s);
+ }return found;
+}
+function jac(m,p,s){let n=s.length,J=Array.from({length:n},()=>[]);for(let j=0;j<n;j++){let a=s.slice(),b=s.slice(),e=1e-5*(1+Math.abs(s[j]));a[j]+=e;b[j]-=e;let fa=m.f(a,p),fb=m.f(b,p);for(let i=0;i<n;i++)J[i][j]=(fa[i]-fb[i])/(2*e)}return J}
+function stability(m,p,s){let J=jac(m,p,s);if(s.length===1)return Math.abs(J[0][0])<1e-5?'Nonhyperbolic':J[0][0]<0?'Stable':'Unstable';let tr=J[0][0]+J[1][1],det=J[0][0]*J[1][1]-J[0][1]*J[1][0];return Math.abs(det)<1e-6?'Nonhyperbolic':det<0?'Saddle':Math.abs(tr)<1e-5?'Neutral / inconclusive':tr<0?'Stable':'Unstable'}
+function draw(){let c=document.querySelector('#plot');if(!c)return;const m=selected,p=params(),box=c.getBoundingClientRect(),w=box.width,h=box.height,dpr=devicePixelRatio||1;c.width=w*dpr;c.height=h*dpr;let g=c.getContext('2d');g.scale(dpr,dpr);if(m.spatial){drawSpatial(g,w,h);return}
+ let y0=init(),path=trajectory(m,p,y0),xr=m.range[0],yr=m.range[1]||[-1,1],X=x=>48+(x-xr[0])/(xr[1]-xr[0])*(w-68),Y=y=>h-40-(y-yr[0])/(yr[1]-yr[0])*(h-62);
+ g.font='11px system-ui';for(let i=0;i<=5;i++){let x=xr[0]+i/5*(xr[1]-xr[0]),y=yr[0]+i/5*(yr[1]-yr[0]);g.strokeStyle='#e1e9db';g.beginPath();g.moveTo(X(x),22);g.lineTo(X(x),h-40);g.stroke();g.fillStyle='#56674e';g.fillText(x.toFixed(1),X(x)-9,h-20);if(m.state.length>1){g.beginPath();g.moveTo(48,Y(y));g.lineTo(w-20,Y(y));g.stroke();g.fillText(y.toFixed(1),8,Y(y)+4)}}
+ g.save();g.beginPath();g.rect(48,22,w-68,h-62);g.clip();
+ if(m.state.length===2){for(let i=0;i<18;i++)for(let j=0;j<14;j++){let x=xr[0]+(i+.5)/18*(xr[1]-xr[0]),y=yr[0]+(j+.5)/14*(yr[1]-yr[0]),v=m.f([x,y],p),dx=v[0]/(xr[1]-xr[0])*(w-68),dy=-v[1]/(yr[1]-yr[0])*(h-62),mag=Math.hypot(dx,dy);if(mag>1e-10){g.globalAlpha=.45;arrow(g,X(x),Y(y),X(x)+dx/mag*9,Y(y)+dy/mag*9)}}g.globalAlpha=1}
+ if(m.state.length===1){g.strokeStyle='#83967b';g.beginPath();g.moveTo(48,Y(0));g.lineTo(w-20,Y(0));g.stroke();for(let i=0;i<16;i++){let x=xr[0]+(i+.5)/16*(xr[1]-xr[0]);arrow(g,X(x),Y(0),X(x)+Math.sign(m.f([x],p)[0])*11,Y(0))}}
+ else{g.strokeStyle='#447a35';g.lineWidth=2.1;g.beginPath();path.forEach((s,i)=>i?g.lineTo(X(s[0]),Y(s[1])):g.moveTo(X(s[0]),Y(s[1])));g.stroke();for(let i=20;i<path.length-3;i+=Math.max(25,Math.floor(path.length/12)))arrow(g,X(path[i][0]),Y(path[i][1]),X(path[i+2][0]),Y(path[i+2][1]))}
+ const eq=cache.eq??(cache.eq=roots(m,p));for(const s of eq){let type=stability(m,p,s);g.fillStyle=type==='Stable'?'#356a2b':type==='Unstable'?'#ce674c':'#a77929';g.strokeStyle='#fff';g.lineWidth=2;g.beginPath();g.arc(X(s[0]),Y(s[1]||0),6,0,7);g.fill();g.stroke()}
+ let idx=cache.times.findIndex(t=>t>=clock);if(idx<0)idx=path.length-1;let s=path[idx];g.fillStyle='#286c9c';g.beginPath();g.arc(X(s[0]),Y(s[1]||0),5,0,7);g.fill();g.restore();g.fillStyle='#405039';g.fillText(m.state[0],w/2,h-3);if(m.state.length>1)g.fillText(m.state[1],12,15);
+ let info=document.querySelector('#sim-info');if(info)info.textContent=`t = ${Math.min(clock,cache.times.at(-1)).toFixed(2)} · ${cache.status|| (m.state.length>2?'Projected trajectory: no planar vector field is defined.':'Click the plot to set the initial state.')}`;
+ let list=document.querySelector('#equilibria');if(list)list.innerHTML=eq.length?eq.map(s=>`<span>${s.map(v=>v.toFixed(3)).join(', ')} <b>${stability(m,p,s)}</b></span>`).join(''):m.state.length>2?'Equilibrium classification requires the full system.':'No isolated equilibrium detected in this view.';
+ c.onclick=e=>{let rect=c.getBoundingClientRect(),s=[xr[0]+(e.clientX-rect.left-48)/(w-68)*(xr[1]-xr[0])];if(m.state.length===2)s.push(yr[0]+(h-40-e.clientY+rect.top)/(h-62)*(yr[1]-yr[0]));s.forEach((v,i)=>{let el=detail.querySelector(`[data-init="${i}"]`);if(el){el.value=v;el.dispatchEvent(new Event('input'))}})};
+}
+const oldRender=render;render=function(){cache=null;spatialCache=null;oldRender();document.querySelector('.chart-wrap').insertAdjacentHTML('beforeend','<p id="sim-info" class="note" aria-live="polite"></p><div id="equilibria" class="eq-list"></div>');detail.querySelectorAll('input[type=range]').forEach(el=>{el.setAttribute('aria-label',el.parentElement.querySelector('label').textContent);let num=document.createElement('input');num.type='number';num.min=el.min;num.max=el.max;num.step=el.step;num.value=el.value;num.className='number-input';num.setAttribute('aria-label',el.getAttribute('aria-label')+' value');el.after(num);num.onchange=()=>{el.value=num.value;el.dispatchEvent(new Event('input'))};el.addEventListener('input',()=>{num.value=el.value;clock=0;cache=null;spatialCache=null;draw()})});document.querySelector('#reset').onclick=()=>select(selected.id);draw()};
+tick=function(ts){if(!running)return;if(!ts)ts=performance.now();clock+=Math.min(.1,(ts-(lastFrame||ts))/1000)*2;lastFrame=ts;draw();anim=requestAnimationFrame(tick)};
+toggle=function(){running=!running;document.querySelector('#run').textContent=running?'Pause':'Play';if(anim)cancelAnimationFrame(anim);lastFrame=0;if(running)anim=requestAnimationFrame(tick)};
+const originalSpatial=drawSpatial;
+// Correct PDE initial data and cache incremental integration instead of restarting every frame.
+drawSpatial=function(g,w,h){let p=params(),key=JSON.stringify([selected.id,p]);if(!spatialCache||spatialCache.key!==key||clock<spatialCache.t)spatialCache={key,t:0,u:Array.from({length:120},(_,i)=>selected.id==='fk'?(i<13?1:0):1),v:Array.from({length:120},(_,i)=>i>=8&&i<14?.12:0)};let z=spatialCache;while(z.t+.01<=clock){let un=z.u.slice(),vn=z.v.slice();for(let i=0;i<120;i++){let l=Math.max(0,i-1),r=Math.min(119,i+1),lap=a=>a[l]-2*a[i]+a[r];if(selected.id==='fk')un[i]+=.01*(p.r*z.u[i]*(1-z.u[i])+p.D*lap(z.u));else if(selected.id==='sis-spatial')vn[i]+=.01*(p.r*z.v[i]*(1-z.v[i])-p.a*z.v[i]+p.D*lap(z.v));else{let infection=p.r*z.u[i]*z.v[i];un[i]-=.01*infection;vn[i]+=.01*(infection-p.alpha*z.v[i]+p.D*lap(z.v))}}z.u=un;z.v=vn;z.t+=.01}g.font='11px system-ui';g.fillStyle='#53634b';for(let j=0;j<=4;j++){let y=25+j*(h-65)/4;g.strokeStyle='#e4ebde';g.beginPath();g.moveTo(45,y);g.lineTo(w-20,y);g.stroke();g.fillText((1-j/4).toFixed(2),8,y+4)}const line=(a,col)=>{g.strokeStyle=col;g.lineWidth=2.5;g.beginPath();a.forEach((v,i)=>{let x=45+i/119*(w-65),y=h-40-v*(h-65);i?g.lineTo(x,y):g.moveTo(x,y)});g.stroke()};if(selected.id==='rabies')line(z.u,'#a3bb78');line(selected.id==='fk'?z.u:z.v,'#386e4d');g.fillText('Space (0–119)',w/2-35,h-12);let info=document.querySelector('#sim-info');if(info)info.textContent=`t = ${z.t.toFixed(2)} · No-flux boundaries · ${selected.id==='rabies'?'Light: susceptible; dark: infected':'Dark: density'}`;};
+render();
 </script></body></html>
