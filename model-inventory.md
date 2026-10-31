@@ -4,18 +4,18 @@ This inventory is based on the uploaded **Lecture Notes — Weeks 1–7**. Chapt
 
 | Chapter | Model | Main state variables | Simulation view |
 |---|---|---|---|
-| 1. One-dimensional systems | Exponential growth / decay | Population size `x` | Phase line |
-| 1. One-dimensional systems | Logistic population growth | Population size `x` | Phase line |
-| 1. One-dimensional systems | Saddle-node normal form | State `x`, parameter `μ` | Phase line |
-| 1. One-dimensional systems | Transcritical normal form | State `x`, parameter `μ` | Phase line |
-| 1. One-dimensional systems | Supercritical pitchfork normal form | State `x`, parameter `μ` | Phase line |
-| 1. One-dimensional systems | Subcritical pitchfork normal form | State `x`, parameter `μ` | Phase line |
-| 1. One-dimensional systems | SIS epidemic model | Infected population `I`, with fixed total `N` | Reduced phase line |
-| 1. One-dimensional systems | Logistic growth with harvesting | Population size `x` | Phase line and equilibria |
-| 1. One-dimensional systems | Spruce budworm outbreak | Budworm population `N` | Phase line and refuge/outbreak equilibria |
+| 1. One-dimensional systems | Exponential growth / decay | Population size `x` | State versus derivative graph |
+| 1. One-dimensional systems | Logistic population growth | Population size `x` | State versus derivative graph |
+| 1. One-dimensional systems | Saddle-node normal form | State `x`, parameter `μ` | State versus derivative graph |
+| 1. One-dimensional systems | Transcritical normal form | State `x`, parameter `μ` | State versus derivative graph |
+| 1. One-dimensional systems | Supercritical pitchfork normal form | State `x`, parameter `μ` | State versus derivative graph |
+| 1. One-dimensional systems | Subcritical pitchfork normal form | State `x`, parameter `μ` | State versus derivative graph |
+| 1. One-dimensional systems | SIS epidemic model | Infected population `I`, with fixed total `N` | Reduced state versus derivative graph |
+| 1. One-dimensional systems | Logistic growth with harvesting | Population size `x` | State versus derivative graph and equilibria |
+| 1. One-dimensional systems | Spruce budworm outbreak | Budworm population `N` | State versus derivative graph and refuge/outbreak equilibria |
 | 1. One-dimensional systems | Mass-action reaction kinetics | Reactants `A`, `B`; product `C` | `A`–`B` phase-plane projection for an elementary reaction |
 | 1. One-dimensional systems | Michaelis–Menten enzyme kinetics | Substrate `s`, complex `c`, product `p` | Substrate–complex phase-plane projection |
-| 1. One-dimensional systems | Phosphorylation–dephosphorylation cycle | Modified protein `W*` | Reduced phase line |
+| 1. One-dimensional systems | Phosphorylation–dephosphorylation cycle | Modified protein `W*` | Reduced state versus derivative graph |
 | 2. Multidimensional systems | Two interacting SIS populations | Infective fractions `u`, `v` | Phase portrait |
 | 2. Multidimensional systems | Lotka–Volterra predator–prey | Prey `N`, predator `P` | Phase portrait |
 | 2. Multidimensional systems | Autoregulatory genetic switch | Protein and mRNA concentrations `u`, `v` | Phase portrait |
@@ -27,8 +27,8 @@ This inventory is based on the uploaded **Lecture Notes — Weeks 1–7**. Chapt
 | 3. Oscillations and bifurcations | Repressilator | Three repressor concentrations | `x₁`–`x₂` projection of a 3D trajectory |
 | 3. Oscillations and bifurcations | Hopf normal form | Complex amplitude `A` | Phase portrait and limit cycle |
 | 3. Oscillations and bifurcations | FitzHugh–Nagumo neuron | Voltage `v`, recovery `w` | Phase portrait |
-| 3. Oscillations and bifurcations | Hodgkin–Huxley neuron | Voltage and channel gates `V,m,h,n` | `V`–`n` projection of a 4D trajectory |
-| 3. Oscillations and bifurcations | Phase oscillator / synchronisation | Phase difference `ψ` | Phase line |
+| 3. Oscillations and bifurcations | Hodgkin–Huxley neuron | Voltage and channel gates `V,m,h,n` | `V`–`m` projection of a 4D trajectory |
+| 3. Oscillations and bifurcations | Phase oscillator / synchronisation | Phase difference `ψ` | State versus derivative graph |
 | 4. Spatial dynamics | Fisher–Kolmogorov equation | Population / gene density `u(x,t)` | 1D reaction–diffusion profile |
 | 4. Spatial dynamics | Spatial SIS epidemic | Susceptible and infected densities | 1D reaction–diffusion profile |
 | 4. Spatial dynamics | Rabies spread in foxes | Susceptible and infected densities | 1D travelling-pulse illustration |
