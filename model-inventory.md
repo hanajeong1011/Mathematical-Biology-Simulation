@@ -29,6 +29,7 @@ This inventory follows the uploaded lecture notes (Weeks 1–7). The page number
 | 4. Spatial dynamics | Fisher–Kolmogorov equation | Density `u(x,t)` | `U–V` travelling-wave portrait, spatial profile | Week 7, p. 3 |
 | 4. Spatial dynamics | Spatial SIS epidemic | Susceptible and infected densities | Travelling-wave portrait, spatial profile | Week 7, p. 9 |
 | 4. Spatial dynamics | Rabies spread in foxes | Susceptible and infected densities | Local reaction portrait, spatial pulse profile | Week 7, p. 10 |
+| 4. Spatial dynamics | Diffusive predator–prey model (lecture-only) | Prey `u`, predator `v`, predator gradient `W` | 3D travelling-wave phase portrait with mouse rotation | Not in the notes PDF |
 
 ## Interpretation notes
 
@@ -37,3 +38,4 @@ This inventory follows the uploaded lecture notes (Weeks 1–7). The page number
 - The Michaelis–Menten, repressilator, and Hodgkin–Huxley plots show lower-dimensional projections of higher-dimensional models.
 - The spatial SIS phase view is a scalar travelling-wave reduction using infected density and its spatial gradient. The rabies phase view shows local reaction dynamics with diffusion omitted; its spatial profile includes diffusion.
 - Spatial PDE profiles are qualitative explicit finite-difference simulations on a one-dimensional grid with no-flux boundaries.
+- The lecture-only predator–prey model uses `ξ = x − cτ` and `W = dV/dξ`; the phase-space trajectory is integrated in `ξ`. Its initial profile selects the wave orientation, while the sign of `c` determines rightward or leftward translation for the chosen travelling-wave convention.
