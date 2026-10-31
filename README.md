@@ -1,18 +1,11 @@
 # Mathematical Biology Simulation
 
-A small, dependency-free interactive companion to the Mathematical Biology lecture notes (Weeks 1–7).
+A dependency-free interactive companion to the Mathematical Biology lecture notes (Weeks 1–7). Open `index.html` in a modern browser; the self-contained file works offline and uses native MathML for equations.
 
-Open `index.html` in a modern browser. The file is self-contained, including native MathML equations, and works offline. Expand a chapter, select a model, adjust its named parameters and initial conditions, then press Play. Sliders and numeric inputs use one decimal place.
+Expand a chapter in the left menu to choose a model. Adjust parameters and initial conditions with one-decimal controls, select an initial state by clicking a phase plot, then play the trajectory. Changing a control or clicking a plot stops and rewinds the animation; Play always starts again from the initial condition.
 
-One-dimensional models plot the state against its derivative, `f(x)`. Two-dimensional models show trajectories and directional arrows. Small labelled markers distinguish fixed points (F.P.), initial conditions (I.C.), and the moving state. An on-plot legend explains stability colours; analytic equilibrium expressions appear below the graph when available. Both pitchfork normal forms share one comparison page.
+One-dimensional phase lines place fixed points and initial states on the x-axis, with the derivative curve `f(x)` shown as a separate reference. Planar portraits show directional vector fields, labelled equilibria and saddle manifolds where present. Bifurcation normal forms have companion equilibrium-branch diagrams. Spatial models show a phase portrait before their finite-difference reaction–diffusion profiles.
 
-Each model identifies the first introduction in the uploaded weekly PDF, using that PDF's own page number. The page references do not refer to a combined semester PDF. The interface uses the selected C green and yellow with palette D's aqua and lilac accents.
+The navigation omits exponential growth and decay, mass-action kinetics, and the phosphorylation–dephosphorylation cycle. Saddle-node, transcritical and both pitchfork forms are grouped under **Types of bifurcation**. First-introduction page references point to the original weekly PDF pages.
 
-## Models represented
-
-- **Chapter 1 — One-dimensional systems:** exponential growth, logistic growth, the saddle-node, transcritical and pitchfork normal forms, single-population SIS, logistic growth with harvesting, spruce budworm outbreak, mass-action kinetics, Michaelis–Menten enzyme kinetics, and a reduced phosphorylation–dephosphorylation cycle.
-- **Chapter 2 — Multidimensional systems:** two-population SIS, Lotka–Volterra predator–prey, genetic switch, Wilson–Cowan populations, two-species competition, and a two-unit continuous-time Hopfield example.
-- **Chapter 3 — Oscillations and bifurcations:** delayed negative feedback, logistic/saturating predator–prey, repressilator, Hopf normal form, FitzHugh–Nagumo, Hodgkin–Huxley, and phase oscillator/synchronisation.
-- **Chapter 4 — Spatial dynamics:** Fisher–Kolmogorov, spatial SIS, and rabies spread in foxes.
-
-The catalogue and qualifications for higher-dimensional projections are listed in [`model-inventory.md`](model-inventory.md). The simulations are teaching illustrations with dimensionless or representative parameter choices; they are not calibrated predictions for a particular biological system.
+The simulations are qualitative teaching illustrations with representative parameter values, not calibrated predictions for a specific biological system. Spatial PDEs use an explicit finite-difference method with no-flux boundaries.
