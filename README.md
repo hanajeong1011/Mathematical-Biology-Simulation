@@ -2,7 +2,11 @@
 
 A small, dependency-free interactive companion to the Mathematical Biology lecture notes (Weeks 1–7).
 
-Open `index.html` in a modern browser. Use the chapter menu to select a model, adjust parameters and initial conditions, and run the phase portrait or spatial profile. The moving marker shows the numerical trajectory; arrows indicate flow direction.
+Open `index.html` in a modern browser. The file is self-contained, including native MathML equations, and works offline. Expand a chapter, select a model, adjust its named parameters and initial conditions, then press Play. Sliders and numeric inputs use one decimal place.
+
+One-dimensional models plot the state against its derivative, `f(x)`. Two-dimensional models show trajectories and directional arrows. Small labelled markers distinguish fixed points (F.P.), initial conditions (I.C.), and the moving state. An on-plot legend explains stability colours; analytic equilibrium expressions appear below the graph when available. Both pitchfork normal forms share one comparison page.
+
+Each model identifies the first introduction in the uploaded weekly PDF, using that PDF's own page number. The page references do not refer to a combined semester PDF. Palette alternatives have been proposed separately; the existing green theme remains until one is selected.
 
 ## Models represented
 
