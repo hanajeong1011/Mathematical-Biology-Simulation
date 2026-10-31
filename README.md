@@ -6,7 +6,7 @@ Open `index.html` in a modern browser. The file is self-contained, including nat
 
 One-dimensional models plot the state against its derivative, `f(x)`. Two-dimensional models show trajectories and directional arrows. Small labelled markers distinguish fixed points (F.P.), initial conditions (I.C.), and the moving state. An on-plot legend explains stability colours; analytic equilibrium expressions appear below the graph when available. Both pitchfork normal forms share one comparison page.
 
-Each model identifies the first introduction in the uploaded weekly PDF, using that PDF's own page number. The page references do not refer to a combined semester PDF. Palette alternatives have been proposed separately; the existing green theme remains until one is selected.
+Each model identifies the first introduction in the uploaded weekly PDF, using that PDF's own page number. The page references do not refer to a combined semester PDF. The interface uses the selected C green and yellow with palette D's aqua and lilac accents.
 
 ## Models represented
 
