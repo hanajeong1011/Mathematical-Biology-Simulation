@@ -1,42 +1,39 @@
-# Model inventory from the lecture notes
+# Model inventory
 
-This inventory is based on the uploaded **Lecture Notes — Weeks 1–7**. Chapter labels follow the chapter/topic headings in those notes. Equations in the site use simplified notation where the original notes nondimensionalise a model or introduce a reduction.
+This inventory follows the uploaded lecture notes (Weeks 1–7). The page number is the page in the original weekly PDF file. The catalogue excludes exponential growth and decay, mass-action kinetics, and the phosphorylation–dephosphorylation cycle, as requested. The additional diffusion predator–prey model discussed for a later update is not included.
 
-| Chapter | Model | Main state variables | Simulation view |
-|---|---|---|---|
-| 1. One-dimensional systems | Exponential growth / decay | Population size `x` | State versus derivative graph |
-| 1. One-dimensional systems | Logistic population growth | Population size `x` | State versus derivative graph |
-| 1. One-dimensional systems | Saddle-node normal form | State `x`, parameter `μ` | State versus derivative graph |
-| 1. One-dimensional systems | Transcritical normal form | State `x`, parameter `μ` | State versus derivative graph |
-| 1. One-dimensional systems | Supercritical pitchfork normal form | State `x`, parameter `μ` | State versus derivative graph |
-| 1. One-dimensional systems | Subcritical pitchfork normal form | State `x`, parameter `μ` | State versus derivative graph |
-| 1. One-dimensional systems | SIS epidemic model | Infected population `I`, with fixed total `N` | Reduced state versus derivative graph |
-| 1. One-dimensional systems | Logistic growth with harvesting | Population size `x` | State versus derivative graph and equilibria |
-| 1. One-dimensional systems | Spruce budworm outbreak | Budworm population `N` | State versus derivative graph and refuge/outbreak equilibria |
-| 1. One-dimensional systems | Mass-action reaction kinetics | Reactants `A`, `B`; product `C` | `A`–`B` phase-plane projection for an elementary reaction |
-| 1. One-dimensional systems | Michaelis–Menten enzyme kinetics | Substrate `s`, complex `c`, product `p` | Substrate–complex phase-plane projection |
-| 1. One-dimensional systems | Phosphorylation–dephosphorylation cycle | Modified protein `W*` | Reduced state versus derivative graph |
-| 2. Multidimensional systems | Two interacting SIS populations | Infective fractions `u`, `v` | Phase portrait |
-| 2. Multidimensional systems | Lotka–Volterra predator–prey | Prey `N`, predator `P` | Phase portrait |
-| 2. Multidimensional systems | Autoregulatory genetic switch | Protein and mRNA concentrations `u`, `v` | Phase portrait |
-| 2. Multidimensional systems | Wilson–Cowan neural populations | Mean firing rates `u₁`, `u₂` | Phase portrait |
-| 2. Multidimensional systems | Two-species competition | Populations `N₁`, `N₂` | Phase portrait |
-| 2. Multidimensional systems | Continuous-time Hopfield network | Two example units | Phase portrait / energy descent illustration |
-| 3. Oscillations and bifurcations | Two-component negative-feedback loop | `x`, `y` | Phase portrait; representative feedback functions |
-| 3. Oscillations and bifurcations | Logistic/saturating predator–prey model | Prey `N`, predator `P` | Phase portrait |
-| 3. Oscillations and bifurcations | Repressilator | Three repressor concentrations | `x₁`–`x₂` projection of a 3D trajectory |
-| 3. Oscillations and bifurcations | Hopf normal form | Complex amplitude `A` | Phase portrait and limit cycle |
-| 3. Oscillations and bifurcations | FitzHugh–Nagumo neuron | Voltage `v`, recovery `w` | Phase portrait |
-| 3. Oscillations and bifurcations | Hodgkin–Huxley neuron | Voltage and channel gates `V,m,h,n` | `V`–`m` projection of a 4D trajectory |
-| 3. Oscillations and bifurcations | Phase oscillator / synchronisation | Phase difference `ψ` | State versus derivative graph |
-| 4. Spatial dynamics | Fisher–Kolmogorov equation | Population / gene density `u(x,t)` | 1D reaction–diffusion profile |
-| 4. Spatial dynamics | Spatial SIS epidemic | Susceptible and infected densities | 1D reaction–diffusion profile |
-| 4. Spatial dynamics | Rabies spread in foxes | Susceptible and infected densities | 1D travelling-pulse illustration |
+| Menu section | Model | Main state variables | Interactive view | First introduced |
+|---|---|---|---|---|
+| Types of bifurcation | Saddle-node normal form | State `x`, parameter `r` | State/derivative plot and equilibrium branches | Week 1, p. 5 |
+| Types of bifurcation | Transcritical normal form | State `x`, parameter `r` | State/derivative plot and equilibrium branches | Week 1, p. 6 |
+| Types of bifurcation | Supercritical pitchfork normal form | State `x`, parameter `r` | Paired normal forms and equilibrium branches | Week 1, p. 6 |
+| Types of bifurcation | Subcritical pitchfork normal form | State `x`, parameter `r` | Paired normal forms and equilibrium branches | Week 1, p. 7 |
+| 1. One-dimensional systems | Logistic population growth | Population `x` | State/derivative plot | Week 1, p. 8 |
+| 1. One-dimensional systems | Single-population SIS epidemic | Infected population `I` | Reduced state/derivative plot | Week 2, p. 1 |
+| 1. One-dimensional systems | Logistic growth with harvesting | Population `x` | State/derivative plot and equilibria | Week 2, p. 2 |
+| 1. One-dimensional systems | Spruce budworm outbreak | Budworm population `N` | State/derivative plot and refuge/outbreak equilibria | Week 2, p. 3 |
+| 1. One-dimensional systems | Michaelis–Menten enzyme kinetics | Substrate `s`, complex `c` | Substrate–complex projection | Week 2, p. 12 |
+| 2. Multidimensional systems | Two interacting SIS populations | Infective fractions `u`, `v` | Phase portrait | Week 3, p. 8 |
+| 2. Multidimensional systems | Lotka–Volterra predator–prey | Prey `N`, predator `P` | Phase portrait | Week 3, p. 13 |
+| 2. Multidimensional systems | Autoregulatory genetic switch | Protein `u`, mRNA `v` | Phase portrait | Week 4, p. 1 |
+| 2. Multidimensional systems | Wilson–Cowan neural populations | Firing rates `u₁`, `u₂` | Phase portrait | Week 4, p. 8 |
+| 2. Multidimensional systems | Two-species competition | Populations `N₁`, `N₂` | Phase portrait | Week 4, p. 10 |
+| 2. Multidimensional systems | Continuous-time Hopfield network | Unit activities | Phase portrait and energy descent | Week 4, p. 15 |
+| 3. Oscillations and bifurcations | Two-component negative-feedback loop | `x`, `y` | Phase portrait | Week 5, p. 3 |
+| 3. Oscillations and bifurcations | Logistic/saturating predator–prey | Prey `N`, predator `P` | Phase portrait | Week 5, p. 4 |
+| 3. Oscillations and bifurcations | Repressilator | Repressor concentrations | Projection of 3D trajectory | Week 5, p. 16 |
+| 3. Oscillations and bifurcations | Hopf normal form | `x`, `y` | Phase portrait and limit cycle | Week 5, p. 20 |
+| 3. Oscillations and bifurcations | FitzHugh–Nagumo neuron | Voltage `v`, recovery `w` | Phase portrait | Week 6, p. 5 |
+| 3. Oscillations and bifurcations | Hodgkin–Huxley neuron | Voltage and channel gates | Projection of 4D trajectory | Week 6, p. 4 |
+| 3. Oscillations and bifurcations | Phase oscillator / synchronisation | Phase difference `ψ` | State/derivative plot | Week 6, p. 14 |
+| 4. Spatial dynamics | Fisher–Kolmogorov equation | Density `u(x,t)` | `U–V` travelling-wave portrait, spatial profile | Week 7, p. 3 |
+| 4. Spatial dynamics | Spatial SIS epidemic | Susceptible and infected densities | Travelling-wave portrait, spatial profile | Week 7, p. 9 |
+| 4. Spatial dynamics | Rabies spread in foxes | Susceptible and infected densities | Local reaction portrait, spatial pulse profile | Week 7, p. 10 |
 
-## Scope notes
+## Interpretation notes
 
-- The genetic-switch card follows the notes’ positive autoregulation model: protein stimulates mRNA production, and mRNA produces protein.
-- The notes introduce the saddle-node, transcritical, and supercritical/subcritical pitchfork normal forms as general dynamical-systems examples. They are included alongside the biological models because they are explicit model equations in the course.
-- The mass-action section derives a general reaction-network framework and includes elementary reaction examples. The interactive card uses the `A + 2B → C` example; Michaelis–Menten and the phosphorylation cycle are included as biologically named kinetic models.
-- A plot of a 3D or 4D model is a projection, not a complete phase portrait. The site labels those projections explicitly.
-- Spatial PDE plots use an explicit finite-difference method on a one-dimensional grid with no-flux boundaries and representative parameters; they are qualitative teaching simulations, not calibrated or precision PDE solvers.
+- The one-population SIS model remains available as the simpler comparison for the two-population interacting SIS model.
+- Saddle-node, transcritical, and pitchfork normal forms are grouped separately in the menu for easier study. The two pitchfork forms share a page and each has its own stable/unstable equilibrium-branch diagram.
+- The Michaelis–Menten, repressilator, and Hodgkin–Huxley plots show lower-dimensional projections of higher-dimensional models.
+- The spatial SIS phase view is a scalar travelling-wave reduction using infected density and its spatial gradient. The rabies phase view shows local reaction dynamics with diffusion omitted; its spatial profile includes diffusion.
+- Spatial PDE profiles are qualitative explicit finite-difference simulations on a one-dimensional grid with no-flux boundaries.
