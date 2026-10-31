@@ -122,7 +122,7 @@ const equations={
  fk:[tex`\frac{\partial u}{\partial t}=ru(1-u)+D\frac{\partial^2u}{\partial x^2}`],
  'sis-spatial':[tex`\frac{\partial I}{\partial t}=rI(1-I)-aI+D\frac{\partial^2I}{\partial x^2}`,tex`S=1-I`],
  rabies:[tex`\frac{\partial s}{\partial t}=-rsh`,tex`\frac{\partial h}{\partial t}=rsh-\alpha h+D\frac{\partial^2h}{\partial x^2}`]
- 'diffusive-predator-prey':[tex`\\frac{\\partial u}{\\partial t}=u(1-u-v)`,tex`\\frac{\\partial v}{\\partial t}=\\alpha v(u-\\beta)+\\frac{\\partial^2v}{\\partial x^2}`,tex`\\xi=x-ct,\\quad U'=\\frac{U(U+V-1)}{c},\\quad V'=W`,tex`W'=\\alpha V(\\beta-U)-cW`],
+ 'diffusive-predator-prey':[tex`\frac{\partial u}{\partial t}=u(1-u-v)`,tex`\frac{\partial v}{\partial t}=\alpha v(u-\beta)+\frac{\partial^2v}{\partial x^2}`,tex`\xi=x-ct,\quad U'=\frac{U(U+V-1)}{c},\quad V'=W`,tex`W'=\alpha V(\beta-U)-cW`],
 };
 const eqNotes={'diffusive-predator-prey':'For the right-moving front, c_min = 2√[α(1−β)] > 0. As ξ increases: (β, 1−β, 0) → (1, 0, 0). The plotted profile is a finite-domain numerical PDE relaxation.',wc:'c = cross; g = gain; I = bias; both time constants are 1.',feedback:'d = decay; g = feedback. These are representative feedback functions.',repressilator:'p = prod; n = hill; d = decay. Symmetric parameters; cyclic repression.',hh:'Classic absolute-voltage convention. Cₘ = 1; gNa = 120, gK = 36, gL = 0.3; ENa = 50, EK = −77, EL = −54.4. Voltage in mV; time in ms.',sis2:'Equal recovery time scales in this reduced view.','sis-spatial':'Equal diffusion coefficients; initially uniform total population, normalised to 1.',hopf:'The displayed family fixes the nonlinear frequency shift to zero.'};
 function escapeHTML(s){return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;')}
@@ -265,7 +265,7 @@ const predatorWaveCache=new Map();
 function computePredatorPreyProfile(alpha,beta){
  const key=alpha.toFixed(3)+':'+beta.toFixed(3);if(predatorWaveCache.has(key))return predatorWaveCache.get(key);
  const c=2*Math.sqrt(alpha*(1-beta)),dx=.3,dt=.018,T=Math.min(60,Math.max(18,12/c)),left=-28,right=c*T+28,N=Math.ceil((right-left)/dx)+1,du=new Float64Array(N),dv=new Float64Array(N),nu=new Float64Array(N),nv=new Float64Array(N);
- for(let i=0;i<N;i++){const x=left+i*dx,s=1/(1+Math.exp(Math.max(-40,Math.min(40,x/1.2))));du[i]=beta+(1-beta)*s;dv[i]=(1-beta)*(1-s)}
+ for(let i=0;i<N;i++){const x=left+i*dx,s=1/(1+Math.exp(Math.max(-40,Math.min(40,-x/1.2))));du[i]=beta+(1-beta)*s;dv[i]=(1-beta)*(1-s)}
  const steps=Math.ceil(T/dt),h=T/steps;
  for(let step=0;step<steps;step++){
   nu[0]=du[0];nv[0]=dv[0];nu[N-1]=du[N-1];nv[N-1]=dv[N-1];
