@@ -288,7 +288,7 @@ function drawSpatial3D(){
  for(let k=0;k<=4;k++){const a=k/4,q=project([a,0,-zLim]);label(a.toFixed(1),q[0],q[1]+16,'center');const b=project([0,a,-zLim]);label(a.toFixed(1),b[0]-5,b[1]+16,'right')}
  for(let k=-2;k<=2;k++){const val=zLim*k/2,q=project([0,0,val]);label(val.toFixed(2),q[0]-7,q[1]+4,'right')}
  const roots=[[0,0,0,'#CAB6CF','(0, 0, 0)'],[1,0,0,'#A8ADD0','(1, 0, 0)'],[p.beta,1-p.beta,0,'#527F6C','(β, 1−β, 0)']];for(const r of roots){const q=project(r);g.fillStyle=r[3];g.beginPath();g.arc(q[0],q[1],4.5,0,Math.PI*2);g.fill();label(r[4],q[0]+8,q[1]-8)}
- const fraction=running?Math.min(1,clock/16):0,index=Math.max(0,Math.min(path.length-1,Math.round(fraction*(path.length-1))));
+ const fraction=Math.min(1,clock/16),index=Math.max(0,Math.min(path.length-1,Math.round(fraction*(path.length-1))));
  g.strokeStyle='rgba(110,141,125,.28)';g.lineWidth=1.6;g.beginPath();path.forEach((s,i)=>{const q=project(s);i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1])});g.stroke();
  g.strokeStyle='#6E8D7D';g.lineWidth=2.7;g.beginPath();for(let i=0;i<=index;i++){const q=project(path[i]);i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1])}g.stroke();
  for(let i=24;i<index-8;i+=Math.max(30,Math.floor(path.length/9))){const a=project(path[i]),b=project(path[i+5]);arrow(g,a[0],a[1],b[0]-a[0],b[1]-a[1],9,'#6E8D7D')}
