@@ -338,7 +338,7 @@ function shoot(p,mode,z){const {alpha:a,beta:b,c}=p,e=mode==='A'?1e-3:1e-5,lp=(-
 
 
 
-let waveConnection='B';
+let waveConnection='A';
 function boundaryWave(p){
  if(p.c<=0)return {ok:false,reason:'These A/B examples use c > 0. No connection has been computed for c <= 0.'};
  let L=45,r=solveWave(p,waveConnection,180,L);
