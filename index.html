@@ -116,7 +116,7 @@ const equations={
  competition:[tex`\frac{dN_1}{dt}=N_1\left(1-\frac{N_1}{10}-\frac{b_{12}N_2}{10}\right)`,tex`\frac{dN_2}{dt}=0.9N_2\left(1-\frac{N_2}{10}-\frac{b_{21}N_1}{10}\right)`],
  hopfield:[tex`\frac{dx_1}{dt}=-x_1+c\tanh(\beta x_2)`,tex`\frac{dx_2}{dt}=-x_2+c\tanh(\beta x_1)`],
  feedback:[tex`\frac{dx}{dt}=\frac{2}{1+y^2}-dx`,tex`\frac{dy}{dt}=\frac{gx}{1+x}-dy`],
- predreal:[tex`N=Ku,\quad P=\frac{Kv}{h},\quad t=\frac{\tau}{r}`,tex`\frac{du}{d\tau}=u(1-u)-\frac{auv}{u+d}=f_1(u,v)`,tex`\frac{dv}{d\tau}=bv\left(1-\frac{v}{u}\right)=f_2(u,v)`,tex`a=\frac{k}{hr},\quad b=\frac{s}{r},\quad d=\frac{D}{K}`],
+ predreal:[tex`\frac{du}{d\tau}=u(1-u)-\frac{auv}{u+d}=f_1(u,v)`,tex`N=Ku,\quad P=\frac{Kv}{h},\quad t=\frac{\tau}{r}`,tex`\frac{dv}{d\tau}=bv\left(1-\frac{v}{u}\right)=f_2(u,v)`,tex`a=\frac{k}{hr},\quad b=\frac{s}{r},\quad d=\frac{D}{K}`],
  repressilator:[tex`\frac{dx_i}{dt}=0.2+\frac{p}{1+x_{i-1}^{n}}-dx_i`,tex`x_0=x_3,\quad i=1,2,3`],
  hopf:[tex`\frac{dx}{dt}=\mu x-\omega y+\sigma x(x^2+y^2)`,tex`\frac{dy}{dt}=\omega x+\mu y+\sigma y(x^2+y^2)`],
  fhn:[tex`\frac{dv}{dt}=v(a-v)(v-1)-w+I_0`,tex`\frac{dw}{dt}=\epsilon(bv-\gamma w)`],
